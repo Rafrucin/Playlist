@@ -30,7 +30,8 @@ public class Song
                 return true;
 
             slow = slow.NextSong;
-            fast = fast.NextSong?.NextSong;
+            //fast = fast.NextSong?.NextSong;
+            fast = (fast.NextSong == null ? null : fast.NextSong.NextSong);
         }
 
         return false;
@@ -44,11 +45,13 @@ public class Song
         Song second = new Song("22");
         Song third = new Song("33");
         Song forth = new Song("44");
+        Song fith = new Song("55");
 
         first.NextSong = second;
         second.NextSong = third;
         third.NextSong = forth;
-        forth.NextSong = third;
+        forth.NextSong = fith;
+        fith.NextSong = first;
         
 
         Console.WriteLine(first.IsRepeatingPlaylist());
